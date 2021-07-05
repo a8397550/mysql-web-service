@@ -2,10 +2,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 8080",
+    "start": "vite --port 8080",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "element-ui": "^2.15.3",
     "vue": "^3.0.5"
   },
   "devDependencies": {

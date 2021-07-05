@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node service"
+    "start": "node ./script/service",
+    "service": "node service"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-colors": "^4.1.1",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "vue-router": "^4.0.10"
   },
   "devDependencies": {
     "sass": "^1.35.1"
