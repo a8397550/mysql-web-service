@@ -1,0 +1,19 @@
+{
+  "name": "mysql-web-service",
+  "version": "1.0.0",
+  "description": "mysql 便捷操作系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node service"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "sass": "^1.35.1"
+  }
+}
