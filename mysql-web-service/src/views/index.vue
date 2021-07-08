@@ -1,10 +1,11 @@
 <template>
   <div>
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item><a href="/showDatabases">数据集</a></el-breadcrumb-item>
-      </el-breadcrumb>
-      <h1>index</h1>
+    <h1>选择database</h1>
+    <table-custom 
+      :columns="[{key: 'a', label: 'a'}]" 
+      :tableData="[{a: 11}, {a: 22}]" 
+      :operator="['查看']"
+    />
   </div>
 </template>
 

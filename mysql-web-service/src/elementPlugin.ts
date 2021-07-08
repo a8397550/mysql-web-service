@@ -1,10 +1,8 @@
 import {versionVerify} from '@/utils/version'
-import Breadcrumb from 'element-ui/packages/breadcrumb';
-import BreadcrumbItem from 'element-ui/packages/breadcrumb-item';
+import TableCustom from '@/src/components/table/index.vue'
 
 export const components = [
-  Breadcrumb,
-  BreadcrumbItem,
+  TableCustom
 ];
 
 export default {
