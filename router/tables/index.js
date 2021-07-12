@@ -65,4 +65,37 @@ router.get('/getTableDesc', function (req, res) {
   })
 })
 
+router.get('/getTablesComment', async function(req, response) {
+  const tables = await query('show tables').then(res => {
+    const queryTables = [];
+
+    console.log('表数量:', res.length)
+
+    res.forEach(tableNameObj => {
+      const tableName = Object.values(tableNameObj)[0]
+      queryTables.push(query(`show create table ${tableName}`).then(res => {
+        const tableCreateSql = res[0]['Create Table']
+        
+        const match = tableCreateSql.match(/COMMENT=\'.*\'/g)
+      
+        return {
+          tableName, 
+          comment: match ? match[0].replace(/COMMENT=\'(.+)\'/g, '$1') : ''
+        }
+      }))
+    })
+
+
+    return Promise.all(queryTables).then(tables => {
+      return tables
+    })
+  })
+
+  response.json({
+    total: tables.length,
+    data: tables,
+    message: ''
+  })
+})
+
 module.exports = router
