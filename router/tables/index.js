@@ -91,7 +91,7 @@ router.get('/getTableData', function (req, res) {
     const keywork = Object.keys(result[0] || {})[0]
     console.log('keywork', keywork)
     if (keywork) {
-      query(`select count(*) from ${tableName}; `).then(tableCount => {
+      return query(`select count(*) from ${tableName}; `).then(tableCount => {
         res.json({
           code: HTTP_RETURN_STATUS.OK,
           data: {
