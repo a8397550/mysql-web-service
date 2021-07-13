@@ -74,8 +74,8 @@ router.get('/getTableData', function (req, res) {
   if (!currentPage) {
     currentPage = 1
   }
-  let next = currentPage * pageSize;
-  let prev = (currentPage - 1) * pageSize;
+
+  let next = (currentPage - 1) * pageSize;
 
   if (!tableName) {
     res.json({
@@ -85,13 +85,32 @@ router.get('/getTableData', function (req, res) {
     })
     return
   }
-  console.log(prev, next)
-  query(`select * from ${tableName} limit ${prev}, ${next}; `).then(result => {
-    res.json({
-      code: HTTP_RETURN_STATUS.OK,
-      data: result,
-      message: ''
-    })
+
+
+  query(`select * from ${tableName} limit ${next},${pageSize}; `).then(result => {
+    const keywork = Object.keys(result[0] || {})[0]
+    console.log('keywork', keywork)
+    if (keywork) {
+      query(`select count(*) from ${tableName}; `).then(tableCount => {
+        res.json({
+          code: HTTP_RETURN_STATUS.OK,
+          data: {
+            total: tableCount[0][`count(*)`],
+            data: result
+          },
+          message: ''
+        })
+      })
+    } else {
+      res.json({
+        code: HTTP_RETURN_STATUS.OK,
+        data: {
+          total: 0,
+          data: result
+        },
+        message: ''
+      })
+    }
   }).catch(err => {
     res.json({
       code: HTTP_RETURN_STATUS.ERROR,

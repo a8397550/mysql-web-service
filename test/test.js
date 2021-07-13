@@ -11,11 +11,6 @@ const fs = require('fs');
 //   console.log(res);
 // })
 
-// 查看表明细
-// query('show create table user_info;').then(res => {
-//   console.log(res);
-// })
-
 const list = [];
 
 // useDataBase('databaseName').then(() => {

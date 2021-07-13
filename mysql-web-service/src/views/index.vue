@@ -9,7 +9,6 @@
           <table-custom v-if="active === index"
             :columns="columns" 
             :tableData="tableData" 
-            :operator="['查看']"
           />
       </el-tab-pane>
     </el-tabs>

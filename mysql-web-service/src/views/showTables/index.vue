@@ -9,7 +9,6 @@
           <table-custom v-if="active === index"
             :columns="columns" 
             :tableData="tableData" 
-            :operator="['查看']"
           />
           <div class="block">
             <el-pagination
@@ -90,22 +89,22 @@ export default defineComponent({
     },
     getTableData(tableName) {
       if (tableName) {
-        if (this.tableName !== tableName) {
-          this.$request.table.getTableDesc({tableName}).then(res => {
-            this.columns = res.data.map(item => {
-              return {
-                key: item.keyword,
-                label: item.comment || item.keyword
-              }
-            })
+        this.$request.table.getTableDesc({tableName}).then(res => {
+          this.columns = res.data.map(item => {
+            return {
+              key: item.keyword,
+              label: item.comment || item.keyword
+            }
           })
-        }
+        })
+     
         this.$request.table.getTableData({
           tableName,
           currentPage: this.currentPage,
           pageSize: this.pageSize,
         }).then(res => {
-          this.tableData = res.data || []
+          this.tableData = res.data.data || []
+          this.total = res.data.total || 0;
         })
 
         this.tableName = tableName
