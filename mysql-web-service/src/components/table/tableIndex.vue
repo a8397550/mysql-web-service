@@ -6,9 +6,9 @@
         v-for="item in columns" :key="item.key"
         :prop="item.key"
         :label="item.label"
-        width="200"
-      >
-      </el-table-column>
+        width="100"
+      />
+      
       <el-table-column
         fixed="right"
         label="操作"

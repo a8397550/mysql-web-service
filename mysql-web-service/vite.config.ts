@@ -9,6 +9,8 @@ export default defineConfig({
     extensions: ['.vue', '.js', '.ts', '.tsx'],
     alias: [
       { find: '@', replacement: __dirname },
+      { find: 'src', replacement: resolve(__dirname, './src') },
+      { find: 'utils', replacement: resolve(__dirname, './utils') },
     ],
   },
   // build: {

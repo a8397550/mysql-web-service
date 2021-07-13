@@ -12,6 +12,11 @@ const routes = [
         component:  () => import('../views/showDatabases/index.vue'),
     },
     {
+        path: "/showTablesDesc",
+        name: "showTablesDesc",
+        component:  () => import('../views/showTables/indexDesc.vue'),
+    },
+    {
         path: "/showTables",
         name: "showTables",
         component:  () => import('../views/showTables/index.vue'),

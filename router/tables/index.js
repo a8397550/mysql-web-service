@@ -65,7 +65,55 @@ router.get('/getTableDesc', function (req, res) {
   })
 })
 
+router.get('/getTableData', function (req, res) {
+  let {tableName, pageSize, currentPage} = req.query;
+  if (!pageSize) {
+    pageSize = 10;
+  }
+
+  if (!currentPage) {
+    currentPage = 1
+  }
+  let next = currentPage * pageSize;
+  let prev = (currentPage - 1) * pageSize;
+
+  if (!tableName) {
+    res.json({
+      code: HTTP_RETURN_STATUS.PARAMS_NOT,
+      data: null,
+      message: 'parameter "tableName" cannot be empty'
+    })
+    return
+  }
+  console.log(prev, next)
+  query(`select * from ${tableName} limit ${prev}, ${next}; `).then(result => {
+    res.json({
+      code: HTTP_RETURN_STATUS.OK,
+      data: result,
+      message: ''
+    })
+  }).catch(err => {
+    res.json({
+      code: HTTP_RETURN_STATUS.ERROR,
+      data: null,
+      error: err,
+      message: '查询表详情异常'
+    })
+  })
+})
+
+// 缓存
+let tempTables;
+
 router.get('/getTablesComment', async function(req, response) {
+  if (tempTables) {
+    response.json({
+      total: tempTables.length,
+      data: tempTables,
+      message: ''
+    })
+  }
+  
   const tables = await query('show tables').then(res => {
     const queryTables = [];
 
@@ -90,6 +138,8 @@ router.get('/getTablesComment', async function(req, response) {
       return tables
     })
   })
+
+  tempTables = tables;
 
   response.json({
     total: tables.length,
