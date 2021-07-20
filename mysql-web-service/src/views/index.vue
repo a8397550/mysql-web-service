@@ -109,7 +109,7 @@ export default defineComponent({
         if (!tableName) {
           return true;
         }
-        return (item.comment || item.tableName).includes(tableName)
+        return (item.comment).includes(tableName) || (item.tableName).includes(tableName) 
       })
     },
     tabChange({ index }) {
