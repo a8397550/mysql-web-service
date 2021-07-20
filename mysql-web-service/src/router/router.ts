@@ -1,3 +1,10 @@
+/*
+ * @Author: lijunyang
+ * @Date: 2021-07-05 10:10:35
+ * @LastEditTime: 2021-07-20 11:01:48
+ * @LastEditors: lijunyang
+ * @Description: 
+ */
 import { createRouter,createWebHistory} from "vue-router";
 // 路由信息
 const routes = [
@@ -7,17 +14,7 @@ const routes = [
         component: () => import('../views/index.vue'),
     },
     {
-        path: "/showDataBases",
-        name: "showDataBases",
-        component:  () => import('../views/showDatabases/index.vue'),
-    },
-    {
-        path: "/showTablesDesc",
-        name: "showTablesDesc",
-        component:  () => import('../views/showTables/indexDesc.vue'),
-    },
-    {
-        path: "/showTables",
+        path: "/getTables",
         name: "showTables",
         component:  () => import('../views/showTables/index.vue'),
     },

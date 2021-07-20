@@ -1,5 +1,25 @@
 <template>
   <div class="table-contianer">
+    <div class="screen-form">
+      <el-form
+        :inline="true"
+        :model="formInline"
+        class="demo-form-inline"
+      >
+        <el-form-item label="筛选表">
+          <el-input
+            v-model="formInline.tableName"
+            placeholder="筛选表"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="onSubmit"
+          >查询</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
     <el-tabs v-model="tableName" @tab-click="tabChange" tab-position="left" class="tabs-container">
       <el-tab-pane v-for="(item, index) in tableList" 
         :key="item.tableName" 
@@ -33,6 +53,9 @@ import {getUrlParams} from 'utils/util'
 export default defineComponent({
   data() {
     return {
+      formInline: {
+        tableName: ''
+      },
       tableList: [],
       columns: [],
       tableData: [],
@@ -47,6 +70,17 @@ export default defineComponent({
     this.getTablesComment();
   },
   methods: {
+    onSubmit(value) {
+      this.oldTableList = this.oldTableList || this.tableList;
+
+      this.tableList = this.oldTableList.filter(item => {
+        const {tableName} = (this.formInline || {});
+        if (!tableName) {
+          return true;
+        }
+        return (item.comment || item.tableName).includes(tableName)
+      })
+    },
     handleSizeChange(value) {
       this.pageSize = value;
       this.getTableData(this.tableName)
@@ -119,7 +153,7 @@ export default defineComponent({
 <style scoped lang="scss">
   .table-contianer {
     ::v-deep .tabs-container {
-      height: 100vh;
+      height: calc(100vh - 100px);
       .el-tabs__content {
         height: 100%;
         overflow-y: auto;
@@ -139,6 +173,11 @@ export default defineComponent({
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .screen-form {
+      height: 60px;
+      display: flex;
     }
   }
 </style>
