@@ -1,7 +1,7 @@
 /*
  * @Author: lijunyang
  * @Date: 2021-07-05 10:10:35
- * @LastEditTime: 2021-07-20 11:01:48
+ * @LastEditTime: 2021-07-21 15:10:07
  * @LastEditors: lijunyang
  * @Description: 
  */
@@ -17,6 +17,11 @@ const routes = [
         path: "/getTables",
         name: "showTables",
         component:  () => import('../views/showTables/index.vue'),
+    },
+    {
+        path: "/queryTables",
+        name: "queryTables",
+        component:  () => import('../views/showTables/queryTable.vue'),
     },
 ];
 

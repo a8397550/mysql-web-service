@@ -5,6 +5,7 @@
         :inline="true"
         :model="formInline"
         class="demo-form-inline"
+        @submit.native.prevent
       >
         <el-form-item label="筛选表">
           <el-input

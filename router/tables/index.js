@@ -167,4 +167,28 @@ router.get('/getTablesComment', async function(req, response) {
   })
 })
 
+router.post('/querySelect', async function(req, response) {
+  const {sql} = req.body;
+
+  query(sql).then(result => {
+    response.json({
+      code: HTTP_RETURN_STATUS.OK,
+      data: {
+        sql,
+        result: result
+      },
+      message: ''
+    })
+  }).catch(err => {
+    response.json({
+      code: HTTP_RETURN_STATUS.ERROR,
+      error: err,
+      data: {
+        sql
+      },
+      message: ''
+    })
+  })
+})
+
 module.exports = router

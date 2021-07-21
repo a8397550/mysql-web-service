@@ -20,8 +20,17 @@ export const getTableData = (data = {}) => {
   })
 }
 
+export const querySelect = (data = {}) => {
+  return request({
+    data,
+    url: '/querySelect',
+    method: "POST"
+  })
+}
+
 export default {
   getTablesComment,
   getTableDesc,
-  getTableData
+  getTableData,
+  querySelect
 }

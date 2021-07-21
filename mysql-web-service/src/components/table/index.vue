@@ -12,6 +12,7 @@
       <el-table-column
         fixed="right"
         label="操作"
+        v-if="operator.length"
         width="100">
         <template #default="scope" style="display: block">
           <el-button v-for="item in operator" @click="handleClick(scope.row)" 
