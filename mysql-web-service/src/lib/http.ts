@@ -1,3 +1,10 @@
+/*
+ * @Author: lijunyang
+ * @Date: 2021-07-07 14:48:37
+ * @LastEditTime: 2021-07-22 14:08:27
+ * @LastEditors: lijunyang
+ * @Description: 
+ */
 import {baseUrl} from './config';
 
 export const joinUrl = (uri: string, params: any = {}) => {
@@ -50,7 +57,13 @@ export const request = function ({
     method,
     headers,
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => res.json()).then(res => {
+    if (res.code === 0) {
+      return res
+    }
+
+    return Promise.reject(res)
+  });
 }
 
 export default request;

@@ -186,7 +186,7 @@ router.post('/querySelect', async function(req, response) {
       data: {
         sql
       },
-      message: ''
+      message: err.code || err.sqlMessage
     })
   })
 })

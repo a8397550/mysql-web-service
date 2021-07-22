@@ -42,8 +42,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
-import { getUrlParams } from 'utils/util'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   data() {
@@ -100,7 +99,7 @@ export default defineComponent({
         this.tableData = result;
         this.total = this.allTableData.length;
       }).catch(err => {
-        console.error(err);
+        this.$message.error(err.message);
       })
     }
   },
