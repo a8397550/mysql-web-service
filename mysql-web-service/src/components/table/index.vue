@@ -1,7 +1,16 @@
+<!--
+ * @Author: lijunyang
+ * @Date: 2021-07-07 15:08:33
+ * @LastEditTime: 2021-07-26 14:58:00
+ * @LastEditors: lijunyang
+ * @Description: 
+-->
 <template>
   <el-table
     :data="tableValue"
-      style="width: 100%">
+    height="500"
+    style="width: 100%"
+    border>
       <el-table-column
         v-for="item in columns" :key="item.key"
         :prop="item.key"
@@ -15,7 +24,7 @@
         v-if="operator.length"
         width="100">
         <template #default="scope" style="display: block">
-          <el-button v-for="item in operator" @click="handleClick(scope.row)" 
+          <el-button v-for="item in operator" :key="item" @click="handleClick(scope.row)" 
             type="text" size="small">{{item}}</el-button>
         </template>
       </el-table-column>
